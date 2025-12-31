@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>臺北市氣候變遷推動歷程與風險研究成果</title>
+  <style>
+:root{
+      --bg:#0b1220;
+      --card:#121c33;
+      --text:#e8eefc;
+      --muted:#a9b6d3;
+      --line:#25345d;
+      --accent:#7aa2ff;
+      --accent2:#4fe3c1;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --max: 1120px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(122,162,255,.25), transparent 60%),
+                  radial-gradient(800px 500px at 90% 10%, rgba(79,227,193,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.65;
+    }
+    a{color:var(--accent)}
+    .topbar{
+      position: sticky; top:0; z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,.7);
+      border-bottom:1px solid rgba(37,52,93,.6);
+    }
+    .wrap{max-width:var(--max); margin:0 auto; padding: 0 18px;}
+    .nav{
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+      padding: 12px 0;
+    }
+    .brand{font-weight:700; letter-spacing:.3px; font-size:15px; color:var(--text)}
+    .links{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .links a{
+      text-decoration:none; color:var(--muted);
+      font-size:13px; padding:8px 10px; border:1px solid rgba(37,52,93,.7);
+      border-radius: 999px;
+    }
+    .links a:hover{color:var(--text); border-color: rgba(122,162,255,.8)}
+    header{
+      padding: 34px 0 18px;
+    }
+    .hero{
+      display:grid; grid-template-columns: 1.1fr .9fr; gap:16px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){ .hero{grid-template-columns:1fr;} }
+    .hcard{
+      background: linear-gradient(180deg, rgba(18,28,51,.9), rgba(18,28,51,.72));
+      border:1px solid rgba(37,52,93,.7);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    h1{margin:0 0 10px; font-size: 22px}
+    .sub{color:var(--muted); font-size:14px; margin:0}
+    .chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+    .chip{
+      font-size:12px; color:var(--text);
+      border:1px solid rgba(37,52,93,.7);
+      padding:6px 10px; border-radius: 999px;
+      background: rgba(11,18,32,.35);
+    }
+    .kpi{
+      display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;
+    }
+    .kpi .item{
+      border:1px solid rgba(37,52,93,.7);
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(11,18,32,.35);
+    }
+    .kpi .num{font-size:18px; font-weight:750}
+    .kpi .lbl{font-size:12px; color:var(--muted)}
+    section{padding: 14px 0}
+    .card{
+      background: rgba(18,28,51,.72);
+      border:1px solid rgba(37,52,93,.7);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+	.grid2{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+    @media (max-width: 900px){ .grid2{display:grid; grid-template-columns: 1fr 1fr; gap:12px} }
+    h2{font-size:18px; margin:0 0 10px}
+    h3{font-size:15px; margin:0 0 8px}
+    .muted{color:var(--muted); font-size:13px}
+    .timeline{
+      display:grid; gap:10px;
+    }
+	
+	#tab-flood .grid2{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+	#tab-flood .grid2 > *{ min-width: 0; }
+	#tab-flood .img-scroller{ width: 100%; }
+	
+	#tab-slope .grid2{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+	#tab-slope .grid2 > *{ min-width: 0; }
+	#tab-slope .img-scroller{ width: 100%; }
+	
+    .trow{
+      display:grid; grid-template-columns: 110px 1fr;
+      gap:10px; align-items:start;
+      padding:10px; border:1px solid rgba(37,52,93,.65);
+      border-radius: 12px; background: rgba(11,18,32,.25);
+    }
+    .year{font-weight:800; color: var(--accent)}
+    .tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px}
+    .tabbtn{
+      cursor:pointer; user-select:none;
+      border:1px solid rgba(37,52,93,.7);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: var(--muted);
+      background: rgba(11,18,32,.25);
+    }
+    .tabbtn[aria-selected="true"]{
+      color: var(--text);
+      border-color: rgba(122,162,255,.9);
+      box-shadow: 0 0 0 3px rgba(122,162,255,.15);
+    }
+    .tabpanel{display:none}
+    .tabpanel.active{display:block}
+    .pill{
+      display:inline-block; font-size:12px;
+      color: var(--text);
+      background: rgba(79,227,193,.12);
+      border:1px solid rgba(79,227,193,.35);
+      padding: 4px 8px; border-radius: 999px;
+      margin-right:6px;
+    }
+    .placeholder{
+      border:1px dashed rgba(169,182,211,.55);
+      border-radius: 12px;
+      padding: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      background: rgba(11,18,32,.18);
+    }
+    footer{padding: 26px 0 30px; color: var(--muted); font-size: 12px}
+    .small{font-size:12px}
+
+    
+    /* ===== Horizontal image scroller (one image per view) ===== */
+    .img-scroller{
+      display:flex;
+      gap:16px;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      padding-bottom:6px;
+    }
+    .img-scroller::-webkit-scrollbar{height:8px;}
+    .img-scroller::-webkit-scrollbar-thumb{background:rgba(169,182,211,.35);border-radius:999px;}
+    .img-slide{flex:0 0 100%;scroll-snap-align:start;}
+    /* 圖片：桌機一半大小、手機放大 */
+    .img-slide img{
+      width:50%;
+      margin:0 auto;
+      display:block;
+      border-radius:12px;
+      border:1px solid rgba(37,52,93,.7);
+      background: rgba(11,18,32,.25);
+      max-height:520px;
+      object-fit:contain;
+    }
+    @media (max-width: 768px){
+      .img-slide img{width:90%;}
+    }
+    .img-slide figcaption{text-align:center;}
+
+    /* ===== Table styling ===== */
+    .data-table{
+      width:100%;
+      border-collapse:collapse;
+      overflow:hidden;
+      border-radius:12px;
+      border:1px solid rgba(37,52,93,.7);
+      background: rgba(11,18,32,.18);
+    }
+    .data-table th,.data-table td{
+      border-bottom:1px solid rgba(37,52,93,.55);
+      padding:10px 10px;
+      vertical-align:top;
+      font-size:13px;
+    }
+    .data-table th{
+      text-align:left;
+      color:var(--text);
+      background: rgba(18,28,51,.85);
+    }
+    .data-table tr:last-child td{border-bottom:0;}
+    .table-note{margin-top:6px;}
+	
+	.milestone-link{
+	display:inline-block;
+	color:#bcd7ff;
+	font-weight:600;
+	text-decoration:none;
+	}
+	.milestone-link:hover{
+	text-decoration:underline;
+	}
+	
+/* ===== 里程碑（每筆一個區塊，年份在左） ===== */
+
+.timeline{
+  display: grid;
+  gap: 12px;
+}
+
+/* 單一里程碑卡片 */
+.milestone{
+  display: grid;
+  grid-template-columns: 96px 1fr; /* 左：年份，右：內容 */
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(37,52,93,.7);
+  background: rgba(11,18,32,.25);
+}
+
+/* 年份 */
+.milestone .year{
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--accent);
+  line-height: 1.2;
+}
+
+/* 右側內容 */
+.milestone .content h3{
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+/* 讓連結「完全長得跟原本標題一樣」 */
+.milestone .content h3 a.milestone-link{
+  color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  text-decoration: none;
+  display: inline;
+}
+
+.milestone .content h3 a.milestone-link:hover{
+  text-decoration: underline;
+}
+
+/* 手機版：年份改為在上方 */
+@media (max-width: 720px){
+  .milestone{
+    grid-template-columns: 1fr;
+  }
+  .milestone .year{
+    font-size: 16px;
+    opacity: .95;
+  }
+}
+
+/* ===== Readability polish ===== */
+h2{font-size:18px; margin:0 0 10px}
+h3{font-size:15px; margin:0 0 8px}
+.muted{color:var(--muted); font-size:13px}
+
+/* Lists */
+ul.muted{padding-left:18px; margin:8px 0}
+ul.muted li{margin-bottom:6px}
+ul.muted li:last-child{margin-bottom:0}
+
+/* Small section labels */
+.section-label{
+  display:inline-block;
+  font-size:12px;
+  padding:4px 8px;
+  border-radius:999px;
+  background: rgba(122,162,255,.15);
+  border: 1px solid rgba(122,162,255,.35);
+  margin: 8px 0 6px;
+}
+
+/* Notes */
+.note{
+  margin-top:8px;
+  font-size:12px;
+  color:var(--muted);
+  border-left:3px solid rgba(169,182,211,.4);
+  padding-left:10px;
+}
+
+/* ===== Milestones: each item as a card, year on the left ===== */
+.timeline{display:grid; gap:12px;}
+.milestone{
+  display:grid;
+  grid-template-columns: 96px 1fr;
+  gap:14px;
+  padding:14px 16px;
+  border-radius:14px;
+  border:1px solid rgba(37,52,93,.7);
+  background: rgba(11,18,32,.25);
+}
+.milestone .year{
+  font-weight:800;
+  font-size:20px;
+  color:var(--accent);
+  letter-spacing:.5px;
+  line-height:1.2;
+  padding-top:2px;
+}
+.milestone .content h3{margin:0 0 4px; font-size:16px; font-weight:650;}
+.milestone .content p.muted{margin:0; font-size:13px; line-height:1.7;}
+
+/* Link looks identical to title; subtle dotted underline indicates clickable */
+.milestone .content h3 a.milestone-link{
+  color:inherit;
+  font-weight:inherit;
+  font-size:inherit;
+  line-height:inherit;
+  text-decoration:none;
+  display:inline;
+  border-bottom:1px dotted rgba(122,162,255,.35);
+}
+.milestone .content h3 a.milestone-link:hover{
+  border-bottom-style:solid;
+}
+
+@media (max-width: 720px){
+  .milestone{grid-template-columns:1fr;}
+  .milestone .year{font-size:16px; opacity:.95;}
+}
+
+/* ===== Tab-specific layout tuning ===== */
+#tab-flood .grid2{grid-template-columns: 1.3fr 0.7fr;}
+#tab-slope .grid2{grid-template-columns: 1.6fr 0.4fr;}
+#tab-slope .grid2 > *{min-width:0;}
+#tab-slope .img-scroller{width:100%;}
+#tab-slope .img-slide img{width:90%;}
+
+/* ===== 點圖放大（Lightbox） ===== */
+
+/* 點圖時顯示可互動 */
+.img-slide img{
+  cursor: zoom-in;
+}
+
+/* 遮罩 */
+.lightbox{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* 放大的圖片 */
+.lightbox img{
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 0 40px rgba(0,0,0,.6);
+  cursor: zoom-out;
+}
+
+/* 顯示狀態 */
+.lightbox.show{
+  display: flex;
+}
+
+
+</style>
+<body>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">成果專區｜臺北市氣候變遷 × 災害風險</div>
+        <div class="links">
+          <a href="#timeline">推動歷程</a>
+          <a href="#risks">風險轉變</a>
+          <a href="#results">研究成果</a>
+          <!-- <a href="#policy">決策應用</a> -->
+          <!-- <a href="#map">地圖展示</a>  -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="wrap">
+      <div class="hero">
+        <div class="hcard">
+          <h1>臺北市氣候變遷推動歷程與研究成果（淹水／坡地／土石流／高溫）</h1>
+          <p class="sub">本頁面為「長期風險分析與政策參考」之成果展示，不屬即時預警或災情通報服務。</p>
+          <div class="chips">
+            <span class="chip">一頁式靜態頁面</span>
+            <span class="chip">可用 URL 嵌入災害情資網</span>
+            <span class="chip">不含個資／不含即時監測</span>
+          </div>
+        </div>
+
+        <div class="hcard">
+          <h2 style="margin-top:0">快速摘要</h2>
+          <div class="kpi">
+            <div class="item">
+              <div class="num">4</div>
+              <div class="lbl">研究主題（淹水／坡地／土石流／高溫）</div>
+            </div>
+            <div class="item">
+              <div class="num">1</div>
+              <div class="lbl">整合頁面（政策 × 科學 × 行動）</div>
+            </div>
+            <div class="item">
+              <div class="num">✓</div>
+              <div class="lbl">可提供熱點區域與優先序參考</div>
+            </div>
+            <div class="item">
+              <div class="num">RWD</div>
+              <div class="lbl">可在情資網框架內正常顯示</div>
+            </div>
+          </div>
+          <p class="muted small" style="margin-top:10px">更新日期：<span id="updatedAt"></span></p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+  <section id="timeline">
+  
+  
+<div class="card">
+    <h2>臺北市氣候變遷推動歷程（里程碑）</h2>
+    <p class="muted">
+      彙整臺北市近年於氣候變遷調適與淨零轉型之重要政策與行動節點，呈現地方層級因應氣候變遷之推動脈絡。
+    </p>
+	
+   
+  <div class="milestone">
+    <span class="year">2012</span>
+    <div class="content">
+	<h3>臺北市氣候變遷調適計畫啟動</h3>
+      <p class="muted">
+        依據國家氣候變遷調適政策綱領，建立地方層級氣候變遷調適之初步計畫架構，
+        作為後續調適行動之基礎。
+      </p>
+    </div>
+  </div>
+
+  <div class="milestone">
+    <span class="year">2019</span>
+    <div class="content">
+      <a href="https://ncsd.ndc.gov.tw/_ofu/download/vlr/2019/108臺北市VLR.pdf"
+         target="_blank" rel="noopener noreferrer"
+         class="milestone-link">
+        發布《臺北市自願檢視報告（VLR 2019）》
+      </a>
+      <p class="muted">
+        將氣候行動成果與聯合國永續發展目標（SDGs）指標綜合呈現，
+        強化氣候治理與永續發展之整合。
+      </p>
+    </div>
+  </div>
+
+  <div class="milestone">
+    <span class="year">2022</span>
+    <div class="content">
+      <a href="https://www.dep.gov.taipei/News_Content.aspx?n=9086C3ED2A4F6A09&sms=9B5E42F97878D232&s=5B143F9795BFB8B5"
+         target="_blank" rel="noopener noreferrer"
+         class="milestone-link">
+        發布《臺北市 2050 淨零行動白皮書》
+      </a>
+      <p class="muted">
+        提出 2030 與 2050 年階段性減碳路徑與策略，
+        作為臺北市推動淨零轉型與相關政策研擬之重要依據。
+      </p>
+    </div>
+  </div>
+
+  <div class="milestone">
+    <span class="year">2024</span>
+    <div class="content">
+      <a href="https://laws.gov.taipei/Law/LawSearch/LawArticleContent/FL103785"
+         target="_blank" rel="noopener noreferrer"
+         class="milestone-link">
+        制定《臺北市淨零排放管理自治條例》
+      </a>
+      <p class="muted">
+        將淨零排放目標納入地方層級法制體系，
+        強化氣候治理之制度基礎與執行力。
+      </p>
+    </div>
+  </div>
+
+  <div class="milestone">
+    <span class="year">2024</span>
+    <div class="content">
+      <a href="https://www.cca.gov.tw/information-service/info/12083.html"
+         target="_blank" rel="noopener noreferrer"
+         class="milestone-link">
+        推動《臺北市氣候變遷調適執行方案（113–115 年）》
+      </a>
+      <p class="muted">
+        訂定三年期氣候變遷調適行動計畫，
+        系統性推動各項調適措施，回應極端氣候衝擊之風險挑戰。
+      </p>
+    </div>
+  </div>
+
+</div>
+
+
+    <section id="risks">
+      <div class="grid2">
+        <div class="card">
+          <h2>關鍵風險轉變（為什麼要做）</h2>
+          <ul class="muted">
+            <li>極端降雨增加 → 短延時內水風險上升</li>
+            <li>坡地降雨觸發門檻可能改變 → 崩塌／土石流風險管理需滾動調整</li>
+            <li>高溫與夜間熱風險 → 易受影響族群照護需求提升</li>
+          </ul>
+          <div class="placeholder">你可以在這裡放 1 張「趨勢圖」或「摘要圖」，檔名例如：/assets/risk_trends.png</div>
+        </div>
+        <div class="card">
+          <h2>本頁面範圍與使用說明</h2>
+          <p class="muted">
+            本頁面提供長期風險分析與成果摘要，供政策研擬、整備規劃與溝通參考；不作為即時預警、避難指示或災情判讀依據。
+          </p>
+          <ul class="muted">
+            <li>資料來源：請列出（例如：政府公開資料／研究計畫成果／既有圖資）</li>
+            <li>更新頻率：建議每年或每季更新一次（視資料而定）</li>
+            <li>聯絡窗口：可放業務單位信箱或電話（不放個人手機）</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="results">
+      <div class="card">
+        <h2>研究成果（四大主題）</h2>
+        <div class="tabs" role="tablist" aria-label="研究成果分頁">
+          <div class="tabbtn" role="tab" aria-selected="true" data-tab="flood">淹水</div>
+          <div class="tabbtn" role="tab" aria-selected="false" data-tab="slope">坡地</div>
+		  <div class="tabbtn" role="tab" aria-selected="false" data-tab="debris">土石流</div>
+          <div class="tabbtn" role="tab" aria-selected="false" data-tab="heat">高溫</div>
+        </div>
+
+    <div id="tab-flood" class="tabpanel active" role="tabpanel">
+    <p>
+    <span class="pill">成果重點說明</span>
+    透過整合淹水危害與社會脆弱度，協助辨識氣候變遷下水災高風險區域，作為防洪調適與整備規劃之參考。
+    </p>
+
+   <div class="grid2">
+    <div>
+      <span class="section-label">研究重點</span>
+      <ul class="muted">
+        <li>
+          採用風險度概念，整合<strong>水災危害度</strong>與<strong>社會脆弱度</strong>，評估水災對臺北市之潛在衝擊。
+        </li>
+        <li>
+          水災危害度係利用臺灣氣候變遷推估資訊與調適知識平台（TCCIP）所提供之
+          AR5 動力降尺度颱風時雨量資料，模擬
+          <strong>基期（1995–2014年）</strong>與
+          <strong>氣候變遷世紀中情境（2031–2065年）</strong>
+          之淹水情形。
+        </li>
+        <li>
+          社會脆弱度則參考國家災害防救科技中心（NCDR）之減災動資料，
+          從政府治理、經濟條件、人口結構等面向量化臺北市之社會情境。
+        </li>
+      </ul>
+
+      <span class="section-label">主要成果</span>
+      <ul class="muted">
+        <li>
+          辨識脆弱社區於強降雨事件下之受災風險特性，作為防災整備與調適策略研擬之依據。
+        </li>
+        <li>
+          分析重要建物與關鍵公共設施於強降雨情境下之潛在衝擊，提供風險管理與因應措施之參考。
+        </li>
+        <li>
+          比較基期與氣候變遷情境下淹水危害度與風險分布之變化趨勢，呈現氣候變遷對水災風險之影響。
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>成果圖件（左右滑動，一次一張）</h3>
+     <div class="img-scroller" aria-label="水災成果圖件（分析→風險→應用）">
+
+	  <!-- 基礎分析 -->
+	  <figure class="img-slide">
+		<img src="assets/flood/flood_baseline.jpg" alt="圖1 臺北市 AR5 颱風事件淹水危害度（基期）">
+		<figcaption class="muted small">圖1　臺北市 AR5 颱風事件淹水危害度（基期）</figcaption>
+	  </figure>
+
+	  <figure class="img-slide">
+		<img src="assets/flood/flood_future.jpg" alt="圖2 臺北市 AR5 颱風事件淹水危害度（氣候變遷世紀中情境）">
+		<figcaption class="muted small">圖2　臺北市 AR5 颱風事件淹水危害度（氣候變遷世紀中情境）</figcaption>
+	  </figure>
+
+	  <figure class="img-slide">
+		<img src="assets/flood/social_vulnerability.jpg" alt="圖3 臺北市社會脆弱度分布圖">
+		<figcaption class="muted small">圖3　臺北市社會脆弱度分布圖</figcaption>
+	  </figure>
+
+	  <!-- 風險結果 -->
+	  <figure class="img-slide">
+		<img src="assets/flood/risk_baseline.jpg" alt="圖4 臺北市 AR5 颱風淹水風險（基期）">
+		<figcaption class="muted small">圖4　臺北市 AR5 颱風淹水風險（基期）</figcaption>
+	  </figure>
+
+	  <figure class="img-slide">
+		<img src="assets/flood/risk_future.jpg" alt="圖5 臺北市 AR5 颱風淹水風險（氣候變遷世紀中情境）">
+		<figcaption class="muted small">圖5　臺北市 AR5 颱風淹水風險（氣候變遷世紀中情境）</figcaption>
+	  </figure>
+
+	  <!-- 應用對象 -->
+	  <figure class="img-slide">
+		<img src="assets/flood/fire_stations_future.jpg" alt="圖6 消防廳舍（氣候變遷世紀中情境）">
+		<figcaption class="muted small">圖6　消防廳舍（氣候變遷世紀中情境）</figcaption>
+	  </figure>
+
+	  <figure class="img-slide">
+		<img src="assets/flood/history_communities_future.jpg" alt="圖7 歷史淹水社區與水患自主防災社區（氣候變遷世紀中情境）">
+		<figcaption class="muted small">
+		  圖7　歷史淹水社區與水患自主防災社區（氣候變遷世紀中情境）
+		</figcaption>
+	  </figure>
+
+     </div>
+
+      <p class="note">
+        ※ 圖檔請放到 <code>assets/flood/</code>，並確認檔名與上方 <code>src</code> 一致（你也可以改檔名，但要同步改 <code>src</code>）。
+      </p>
+    </div>
+
+  </div>
+
+  <div style="height:12px"></div>
+
+  <div class="grid2">
+    <div class="card" style="padding:14px">
+      <h3>表1　因氣候變遷致風險等級提昇之消防廳舍</h3>
+      <table class="data-table" aria-label="表1 因氣候變遷致風險等級提昇之消防廳舍">
+        <thead>
+          <tr>
+            <th style="width:34%">風險等級</th>
+            <th style="width:22%">行政區（數量）</th>
+            <th>名稱</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1級風險提昇至2級風險</td><td>大同區（1處）</td><td>大同分隊（第四救災救護大隊）</td></tr>
+          <tr><td>1級風險提昇至2級風險</td><td>大安區（1處）</td><td>古亭分隊</td></tr>
+          <tr><td>1級風險提昇至2級風險</td><td>中山區（1處）</td><td>圓山分隊</td></tr>
+          <tr><td>1級風險提昇至2級風險</td><td>北投區（1處）</td><td>關渡分隊</td></tr>
+          <tr><td>1級風險提昇至2級風險</td><td>萬華區（2處）</td><td>雙園分隊（萬華中隊）、龍山分隊</td></tr>
+          <tr><td>1級風險提昇至3級風險</td><td>文山區（1處）</td><td>木柵分隊</td></tr>
+        </tbody>
+      </table>
+      <p class="note">資料來源：科研_水災（表13）。</p>
+    </div>
+
+    <div class="card" style="padding:14px">
+      <h3>表2　受氣候變遷淹水風險與近5年歷史淹水影響之里分類</h3>
+      <table class="data-table" aria-label="表2 受氣候變遷淹水風險與近5年歷史淹水影響之里分類">
+        <thead>
+          <tr>
+            <th style="width:10%">優先序</th>
+            <th style="width:34%">類別</th>
+            <th>里名</th>
+            <th style="width:10%">數量</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>氣候變遷淹水風險3級且近5年有歷史淹水</td>
+            <td>北投區清江里、八仙里、立農里、立賢里；文山區明義里</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>氣候變遷淹水風險2級且近5年有歷史淹水</td>
+            <td>北投區洲美里；士林區百齡里、三玉里、富洲里、蘭興里；大安區光武里、龍門里、學府里；文山區博嘉里</td>
+            <td>9</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>氣候變遷淹水風險3級但近5年無淹水紀錄</td>
+            <td>北投區大同里、尊賢里、吉慶里；內湖區港都里</td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>氣候變遷淹水風險2級但近5年無淹水紀錄</td>
+            <td>
+              北投區豐年里、中央里、關渡里、吉利里、文林里；
+              士林區福安里、德華里、永倫里、福德里、福中里、福順里、福華里；
+              中山區新庄里；內湖區湖興里；大同區民權里；
+              萬華區青山里、柳鄉里、富福里、華江里、糖蔀里、頂碩里、綠堤里、新安里、日善里、錦德里、凌霄里、忠貞里、日祥里、興德里；
+              文山區興福里、政大里、木新里、樟腳里
+            </td>
+            <td>33</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">資料來源：科研_水災（表11）。</p>
+    </div>
+  </div>
+</div>
+
+     <div id="tab-slope" class="tabpanel" role="tabpanel">
+  <p>
+    <span class="pill">成果重點說明</span>
+    本研究採用「風險度」概念，整合坡地災害危害度與社會脆弱度，評估氣候變遷情境下坡地災害對臺北市之潛在衝擊，作為坡地防災與土地管理之參考。
+  </p>
+
+
+  <div class="grid2">
+    <div>
+      <span class="section-label">研究重點</span>
+      <ul class="muted">
+        <li>
+          坡地災害危害度分析：運用 TCCIP 提供之 <strong>AR6 動力降尺度日降雨資料</strong>，
+          評估 <strong>基期</strong>、<strong>世紀中</strong>與<strong>世紀末</strong>情境下
+          超過坡地災害警戒值之降雨發生機率，並結合<strong>土石流潛勢溪流影響範圍</strong>判別危害程度。
+        </li>
+        <li>
+          社會脆弱度分析：以<strong>土石流潛勢溪流保全人數</strong>及<strong>老舊聚落保全人數</strong>為基礎，
+          綜合評估坡地災害對不同地區之人口與聚落衝擊程度。
+        </li>
+        <li>
+          情境比較：比較不同氣候情境下危害度與風險分布之變化，呈現氣候變遷對都市坡地安全之影響。
+        </li>
+      </ul>
+
+      <span class="section-label">主要成果</span>
+      <ul class="muted">
+        <li>辨識氣候變遷情境下坡地災害風險較高之里別與區域，支援坡地防災與土地管理優先序研擬。</li>
+        <li>分析土石流潛勢溪流及老舊聚落於極端降雨事件下之潛在風險，提供坡地災害防治與應變策略參考。</li>
+        <li>呈現基期、世紀中、世紀末情境下風險差異與變化趨勢，作為滾動調適與整備規劃之依據。</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>成果圖件（左右滑動，一次一張）</h3>
+
+      <div class="img-scroller" aria-label="坡災成果圖件">
+        <figure class="img-slide">
+          <img src="assets/slope/baseline_rain.jpg" alt="圖1 基期降雨情境">
+          <figcaption class="muted small">圖1　基期降雨情境</figcaption>
+        </figure>
+
+        <figure class="img-slide">
+          <img src="assets/slope/midcentury_rain.jpg" alt="圖2 世紀中降雨情境">
+          <figcaption class="muted small">圖2　世紀中降雨情境</figcaption>
+        </figure>
+
+        <figure class="img-slide">
+          <img src="assets/slope/points.jpg" alt="圖3 臺北市情境點位分布情況">
+          <figcaption class="muted small">圖3　臺北市情境點位分布情況</figcaption>
+        </figure>
+
+        <figure class="img-slide">
+          <img src="assets/slope/debris_vulnerability.jpg" alt="圖4 土石流脆弱度">
+          <figcaption class="muted small">圖4　土石流脆弱度</figcaption>
+        </figure>
+
+        <figure class="img-slide">
+          <img src="assets/slope/settlement_vulnerability.jpg" alt="圖5 老舊聚落脆弱度">
+          <figcaption class="muted small">圖5　老舊聚落脆弱度</figcaption>
+        </figure>
+
+        <figure class="img-slide">
+          <img src="assets/slope/debris_risk_mid.jpg" alt="圖6 臺北市 AR6 土石流風險（世紀中）">
+          <figcaption class="muted small">圖6　臺北市 AR6 土石流風險（世紀中）</figcaption>
+        </figure>
+
+        <figure class="img-slide">
+          <img src="assets/slope/debris_risk_end.jpg" alt="圖7 臺北市 AR6 土石流風險（世紀末）">
+          <figcaption class="muted small">圖7　臺北市 AR6 土石流風險（世紀末）</figcaption>
+        </figure>
+
+        <figure class="img-slide">
+          <img src="assets/slope/settlement_risk_mid.jpg" alt="圖8 臺北市 老舊聚落風險（世紀中）">
+          <figcaption class="muted small">圖8　臺北市 老舊聚落風險（世紀中）</figcaption>
+        </figure>
+
+        <figure class="img-slide">
+          <img src="assets/slope/settlement_risk_end.jpg" alt="圖9 臺北市 AR6 老舊聚落風險（世紀末）">
+          <figcaption class="muted small">圖9　臺北市 AR6 老舊聚落風險（世紀末）</figcaption>
+        </figure>
+      </div>
+
+      <p class="note">
+        ※ 圖檔請放到 <code>assets/slope/</code>，檔名需與上方 <code>src</code> 一致（可自行改名，但要同步修改 <code>src</code>）。
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="tab-debris" class="tabpanel" role="tabpanel">
+          <p><span class="pill">一句話能幹嘛</span>支援預警整備與保全對象風險溝通。</p>
+          <div class="grid2">
+            <div>
+              <h3>研究重點</h3>
+              <ul class="muted">
+                <li>（例）降雨觸發指標與危險溪流分級</li>
+              </ul>
+              <h3>主要成果</h3>
+              <ul class="muted">
+                <li>土石流潛勢／風險分布</li>
+                <li>重點區域清單（可供巡查優先序）</li>
+              </ul>
+            </div>
+            <div class="placeholder">放圖或放連結（PDF/圖片/WebGIS）</div>
+          </div>
+        </div>
+		
+        <div id="tab-heat" class="tabpanel" role="tabpanel">
+          <p><span class="pill">一句話能幹嘛</span>支援高溫風險族群照護與避暑設施規劃。</p>
+          <div class="grid2">
+            <div>
+              <h3>研究重點</h3>
+              <ul class="muted">
+                <li>（例）都市熱島與夜間高溫的空間化評估</li>
+              </ul>
+              <h3>主要成果</h3>
+              <ul class="muted">
+                <li>熱風險分布圖</li>
+                <li>易受影響族群（或敏感場域）分布</li>
+              </ul>
+            </div>
+            <div class="placeholder">放圖或放連結（PDF/圖片/WebGIS）</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section id="policy">
+      <div class="card">
+        <h2>成果如何支援市政決策（建議放 3～5 個例子）</h2>
+        <div class="grid2">
+          <div>
+            <h3>工作流程（示意）</h3>
+            <ol class="muted">
+              <li>氣候資料／情境</li>
+              <li>災害風險分析（淹水／土石流／坡地／高溫）</li>
+              <li>空間化成果（風險分級、熱點）</li>
+              <li>政策研擬與整備規劃（優先序、溝通、工程/非工程措施）</li>
+            </ol>
+          </div>
+          <div>
+            <h3>應用例（請填你們真實案例）</h3>
+            <ul class="muted">
+              <li>（例）支援○○計畫之風險依據與範圍界定</li>
+              <li>（例）提供○○區域熱點清單供跨局處研議</li>
+              <li>（例）用於災防整備宣導與溝通素材</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- <section id="map"> 
+      <div class="card">
+        <h2>地圖展示（可選）</h2>
+        <p class="muted">如果你們已有 WebGIS（ArcGIS/GeoServer…），最簡單是直接嵌入現成地圖網址。</p>
+
+        <!-- 把下面 src 換成你們的 WebGIS 連結，或先留空 --
+        <div class="placeholder">
+          這裡可放地圖 iframe（示例）：
+          <div style="margin-top:10px; border-radius:12px; overflow:hidden; border:1px solid rgba(37,52,93,.7)">
+            <iframe
+              title="風險地圖"
+              src="ABOUT:BLANK"
+              style="width:100%; height:420px; border:0; background: rgba(11,18,32,.15);"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+          <div class="muted small" style="margin-top:8px">把 ABOUT:BLANK 換成地圖 URL 就能用了。</div>
+        </div>
+      </div>
+    </section> -->
+
+    <footer>
+      <div>備註：本頁面建議以「靜態內容」提供，避免涉及即時資料、個資或預警判讀責任。</div>
+      <div class="small">© 臺北市（或你的計畫單位）｜聯絡窗口：（業務信箱）</div>
+    </footer>
+  </main>
+
+  <script>
+    // Updated date
+    document.getElementById("updatedAt").textContent = new Date().toLocaleDateString("zh-TW", {
+      year: "numeric", month: "2-digit", day: "2-digit"
+    });
+
+    // Tabs
+    const btns = document.querySelectorAll(".tabbtn");
+    const panels = {
+      flood: document.getElementById("tab-flood"),
+      debris: document.getElementById("tab-debris"),
+      slope: document.getElementById("tab-slope"),
+      heat: document.getElementById("tab-heat"),
+    };
+    btns.forEach(b => b.addEventListener("click", () => {
+      btns.forEach(x => x.setAttribute("aria-selected", "false"));
+      b.setAttribute("aria-selected", "true");
+      Object.values(panels).forEach(p => p.classList.remove("active"));
+      panels[b.dataset.tab].classList.add("active");
+    }));
+  </script>
+  <!-- 點圖放大用 Lightbox -->
+<div class="lightbox" id="lightbox">
+  <img src="" alt="">
+</div>
+<!-- 點圖放大用 JS -->
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+
+  document.addEventListener('click', function(e){
+    const img = e.target.closest('.img-slide img');
+    if(!img) return;
+
+    lightboxImg.src = img.src;
+    lightbox.classList.add('show');
+  });
+
+  // 點任意處關閉
+  lightbox.addEventListener('click', function(){
+    lightbox.classList.remove('show');
+    lightboxImg.src = '';
+  });
+</script>
+
+</body>
+</html>
